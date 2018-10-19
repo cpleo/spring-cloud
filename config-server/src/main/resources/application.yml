@@ -1,0 +1,32 @@
+server:
+  port: 9003
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+         #本地git仓库方式  window中file:///  其他的file://
+          uri: file:///F:/configrepo/config
+  application:
+     #集群方式config-server此值必须配置
+    name: config-server
+
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+
+##########################eureka集群注册###################
+eureka:
+  instance:
+#    hostname: config-server
+    instance-id: config-server${server.port}
+    appname: config-server
+  client:
+    serviceUrl:
+        defaultZone: http://127.0.0.1:8081/eureka
+##########################eureka集群注册###################
